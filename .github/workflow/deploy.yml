@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Install wasm-bindgen-cli
+        run: cargo install wasm-bindgen-cli --force
+
+      - name: Build WASM
+        run: cargo build --profile wasm-release --target wasm32-unknown-unknown
+
+      - name: Generate JS bindings
+        run: |
+          wasm-bindgen --out-dir ./web --target web \
+            --out-name space_shooter \
+            ./target/wasm32-unknown-unknown/wasm-release/space_shooter.wasm
+
+      - name: Optimize WASM size
+        run: |
+          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_121/binaryen-version_121-x86_64-linux.tar.gz | tar xzf -
+          ./binaryen-version_121/bin/wasm-opt -Os \
+            -o web/space_shooter_bg.wasm \
+            web/space_shooter_bg.wasm
+
+      - name: Copy assets & HTML
+        run: |
+          cp -r assets web/assets
+          cp web.html web/index.html
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web

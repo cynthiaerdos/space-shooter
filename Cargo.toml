@@ -14,5 +14,13 @@ opt-level = 1
 opt-level = 3
 
 [profile.release]
+opt-level = 3
 codegen-units = 1
 lto = "thin"
+strip = true
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = "s"
+lto = true
+strip = "debuginfo"
