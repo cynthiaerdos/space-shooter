@@ -1,4 +1,4 @@
-use bevy::prelude::{Commands, Time, Entity, Query, Res, Transform, With};
+use bevy::prelude::*;
 
 use super::{Projectile};
 use crate::shared::components::{ DespawnOffscreen, Velocity};

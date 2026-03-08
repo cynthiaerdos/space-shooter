@@ -1,13 +1,13 @@
-mod projectile;
-mod collision;
+mod game;
 mod shared;
-mod enemy;
-mod player;
+mod states;
+mod ui;
 
 use bevy::prelude::*;
 use bevy::window::WindowResolution;
-use shared::resources::{SpriteAssets};
+use shared::resources::{SpriteAssets, Score, Lives};
 use shared::constants::{WINDOW_WIDTH, WINDOW_HEIGHT};
+use states::GameState;
 
 fn main() {
     App::new()
@@ -22,19 +22,20 @@ fn main() {
                     }),
                     ..default()
                 })
-                // Use nearest-neighbour sampling so pixel-art sprites stay crisp.
                 .set(ImagePlugin::default_nearest()),
         )
+        .init_resource::<Score>()
+        .init_resource::<Lives>()
         .add_systems(PreStartup, load_assets)
         .add_plugins((
-            player::PlayerPlugin,
-            projectile::ProjectilePlugin,
-            enemy::EnemyPlugin,
-            collision::CollisionPlugin,
+            game::GamePlugin,
+            ui::UiPlugin,
         ))
+        .init_state::<GameState>()
         .add_systems(Startup, spawn_camera)
         .run();
 }
+
 
 fn load_assets(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.insert_resource(SpriteAssets {

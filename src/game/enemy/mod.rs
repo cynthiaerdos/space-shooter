@@ -2,6 +2,7 @@ pub mod systems;
 pub mod helpers;
 
 use bevy::prelude::*;
+use crate::states::GameState;
 use crate::shared::constants::{ENEMY_SPAWNS_PER_SECOND};
 
 #[derive(Component)]
@@ -24,6 +25,10 @@ impl Plugin for EnemyPlugin {
         app.insert_resource(EnemySpawnTimer {
             timer: Timer::from_seconds(1.0 / ENEMY_SPAWNS_PER_SECOND, TimerMode::Repeating),
         })
-        .add_systems(Update, (systems::spawn_enemies, systems::enemy_movement, systems::enemy_shooting));
+        .add_systems(
+            Update, 
+            (systems::despawn_offscreen_enemies, systems::spawn_enemies, systems::enemy_movement, systems::enemy_shooting)
+                .run_if(in_state(GameState::Playing)),
+        );
     }
 }

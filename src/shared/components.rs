@@ -1,4 +1,4 @@
-use bevy::prelude::{Component, Vec2};
+use bevy::prelude::*;
 
 #[derive(Component, Clone, Copy)]
 pub struct Velocity(pub Vec2);

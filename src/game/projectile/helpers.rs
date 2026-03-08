@@ -1,4 +1,4 @@
-use bevy::prelude::{Commands, Sprite, Transform, Vec2, Vec3, default};
+use bevy::prelude::*;
 
 use super::{Projectile, EnemyProjectile, PlayerProjectile};
 use crate::shared::components::{RadiusCollider, DespawnOffscreen, Velocity};

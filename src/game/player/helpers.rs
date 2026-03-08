@@ -1,9 +1,9 @@
-use bevy::prelude::{Timer, TimerMode, Res, Commands, Sprite, Transform, Vec3, default};
+use bevy::prelude::*;
 
 use super::{Player, ProjectileCooldown};
 use crate::shared::components::{RadiusCollider};
-use crate::shared::constants::{PLAYER_PROJECTILES_PER_SECOND, PLAYER_Y_COORDINATE, PLAYER_DIMENSION};
-use crate::shared::resources::SpriteAssets;
+use crate::shared::constants::{PLAYER_DIMENSION, PLAYER_LIVES, PLAYER_PROJECTILES_PER_SECOND, PLAYER_Y_COORDINATE};
+use crate::shared::resources::{Lives, Score, SpriteAssets};
 
 pub fn spawn_player(
     mut commands: Commands,
@@ -24,5 +24,16 @@ pub fn spawn_player(
             timer: Timer::from_seconds(1.0 / PLAYER_PROJECTILES_PER_SECOND, TimerMode::Once),
         },
     ));
-    
+}
+
+pub fn reset_player_lives(
+    mut lives: ResMut<Lives>,
+) {
+    lives.value = PLAYER_LIVES;
+}
+
+pub fn reset_player_score(
+    mut score: ResMut<Score>,
+) {
+    score.value = 0;
 }

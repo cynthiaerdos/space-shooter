@@ -1,9 +1,19 @@
 use bevy::prelude::*;
 
 use super::{Player, ProjectileCooldown};
-use crate::projectile;
+use crate::game::projectile;
 use crate::shared::constants::*;
-use crate::shared::resources::SpriteAssets;
+use crate::shared::resources::{Lives, SpriteAssets};
+use crate::states::GameState;
+
+pub fn player_lives(
+    mut game_state: ResMut<NextState<GameState>>,
+    lives: Res<Lives>,
+) {
+    if lives.value == 0 {
+        game_state.set(GameState::Dead);
+    }
+}
 
 pub fn player_movement(
     keyboard: Res<ButtonInput<KeyCode>>,
