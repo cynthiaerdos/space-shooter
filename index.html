@@ -24,6 +24,20 @@
       canvas {
         display: block;
       }
+
+      .controls {
+        color: #888;
+        font-family: monospace;
+        font-size: 14px;
+        margin-top: 12px;
+        display: flex;
+        gap: 24px;
+      }
+
+      .controls span {
+        font-weight: bold;
+        color: #ccc;
+      }
     </style>
   </head>
   <body>
@@ -42,5 +56,10 @@
           }
         });
     </script>
+
+    <div class="controls">
+      <div><span>A / D or Arrow keys</span> - Move</div>
+      <div><span>Space</span> - Shoot</div>
+    </div>
   </body>
 </html>
