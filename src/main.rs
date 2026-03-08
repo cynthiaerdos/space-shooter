@@ -9,9 +9,12 @@ use shared::resources::{SpriteAssets, Score, Lives};
 use shared::constants::{WINDOW_WIDTH, WINDOW_HEIGHT};
 use states::GameState;
 
+use crate::shared::resources::FontAssets;
+
 fn main() {
-    App::new()
-        .add_plugins(
+    let mut app = App::new();
+
+    app.add_plugins(
             DefaultPlugins
                 .set(WindowPlugin {
                     primary_window: Some(Window {
@@ -23,10 +26,24 @@ fn main() {
                     ..default()
                 })
                 .set(ImagePlugin::default_nearest()),
-        )
+        );
+
+    let asset_server = app.world().resource::<AssetServer>().clone();
+
+    app.insert_resource(FontAssets {
+        mono: asset_server.load("fonts/FiraMono-Medium.ttf"),
+    });
+
+    app.insert_resource(SpriteAssets {
+        player: asset_server.load("sprites/player.png"),
+        enemy: asset_server.load("sprites/enemy.png"),
+        player_projectile: asset_server.load("sprites/player_projectile.png"),
+        enemy_projectile: asset_server.load("sprites/enemy_projectile.png"),
+    });
+        
+    app.insert_resource(ClearColor(Color::srgb(0.125, 0.125, 0.302)))
         .init_resource::<Score>()
         .init_resource::<Lives>()
-        .add_systems(PreStartup, load_assets)
         .add_plugins((
             game::GamePlugin,
             ui::UiPlugin,
@@ -35,17 +52,6 @@ fn main() {
         .add_systems(Startup, spawn_camera)
         .run();
 }
-
-
-fn load_assets(mut commands: Commands, asset_server: Res<AssetServer>) {
-    commands.insert_resource(SpriteAssets {
-        player: asset_server.load("sprites/player.png"),
-        enemy: asset_server.load("sprites/enemy.png"),
-        player_projectile: asset_server.load("sprites/player_projectile.png"),
-        enemy_projectile: asset_server.load("sprites/enemy_projectile.png"),
-    });
-}
-
 
 fn spawn_camera(mut commands: Commands) {
     commands.spawn(Camera2d);

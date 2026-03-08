@@ -10,6 +10,11 @@ pub struct SpriteAssets {
     pub enemy_projectile: Handle<Image>,
 }
 
+#[derive(Resource)]
+pub struct FontAssets {
+    pub mono: Handle<Font>,
+}
+
 #[derive(Resource, Default)]
 pub struct Score {
     pub value: u32,

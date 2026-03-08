@@ -55,6 +55,12 @@ jobs:
           cp -r assets web/assets
           cp static/index.html web/index.html
 
+      - name: Install cargo-about
+        run: cargo install cargo-about --locked
+
+      - name: Generate third-party licenses
+        run: cargo about generate about.hbs -o web/THIRD_PARTY_LICENSES.html
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -18,7 +18,13 @@ Simple space shooter built with [Bevy](https://bevyengine.org/) 0.18 within a fe
 
 ### Assets
 
-- **Space Shooter Starter Pack** by [anim86](https://anim86.itch.io) ([itch.io page](https://anim86.itch.io/space-shoter-starter-pack))
+- **Space Shooter Starter Pack** by [anim86](https://anim86.itch.io)
+  - [itch.io](https://anim86.itch.io/space-shoter-starter-pack)
+  - Free asset pack, used with credit
+
+- **FiraMono** font by Mozilla
+  - [Google Fonts](https://fonts.google.com/specimen/Fira+Mono)
+  - SIL Open Font License 1.1 (see [assets/fonts/OFL.txt](assets/fonts/OFL.txt))
 
 ### Engine & Libraries
 
@@ -34,4 +40,9 @@ The source code in this repository is dual-licensed under either:
 
 at your option.
 
-**Note:** The art assets in the `assets/` folder are **not** covered by the above licenses. They are the work of [anim86](https://anim86.itch.io) and are used here with credit. See the [original asset pack](https://anim86.itch.io/space-shoter-starter-pack) for any terms of use.
+**Note:** The assets in `assets/` are **not** covered by the above licenses:
+
+- **Art** by [anim86](https://anim86.itch.io) - see the [original asset pack](https://anim86.itch.io/space-shoter-starter-pack) for terms of use
+- **FiraMono font** by Mozilla - SIL Open Font License 1.1 (see [assets/fonts/OFL.txt](assets/fonts/OFL.txt))
+
+For a complete list of all dependencies and their licenses, see the [Third Party Licenses](https://cynthiaerdos.github.io/space-shooter/THIRD_PARTY_LICENSES.html).

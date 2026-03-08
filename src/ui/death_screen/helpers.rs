@@ -2,9 +2,9 @@ use bevy::prelude::*;
 
 use super::{RestartButton, MenuButton, DeathScreenRoot};
 use crate::ui::helpers;
-use crate::shared::resources::{Score};
+use crate::shared::resources::{FontAssets, Score};
 
-pub fn spawn_death_screen(mut commands: Commands, score: Res<Score>) {
+pub fn spawn_death_screen(mut commands: Commands, score: Res<Score>, fonts: Res<FontAssets>) {
     commands
         .spawn((
             Node {
@@ -37,7 +37,7 @@ pub fn spawn_death_screen(mut commands: Commands, score: Res<Score>) {
                 TextColor(Color::WHITE),
             ));
 
-            helpers::spawn_button(parent, "RESTART", RestartButton);
-            helpers::spawn_button(parent, "MENU", MenuButton);
+            helpers::spawn_button(parent, "RESTART", RestartButton, &fonts);
+            helpers::spawn_button(parent, "MENU", MenuButton, &fonts);
         });
 }

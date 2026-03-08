@@ -1,8 +1,11 @@
 use bevy::prelude::*;
 
+use crate::ui::helpers;
+use crate::shared::resources::FontAssets;
+
 use super::{MainMenuRoot, PlayButton};
 
-pub fn spawn_main_menu(mut commands: Commands) {
+pub fn spawn_main_menu(mut commands: Commands, fonts: Res<FontAssets>) {
     commands
         .spawn((
             Node {
@@ -18,37 +21,15 @@ pub fn spawn_main_menu(mut commands: Commands) {
         ))
         .with_children(|parent| {
             parent.spawn((
-                Text::new("SPACE SHOOTER"),
+                Text::new("Space Shooter"),
                 TextFont {
-                    font_size: 56.0,
+                    font: fonts.mono.clone(),
+                    font_size: 64.0,
                     ..default()
                 },
                 TextColor(Color::WHITE),
             ));
 
-            parent
-                .spawn((
-                    Button,
-                    Node {
-                        width: Val::Px(220.0),
-                        height: Val::Px(65.0),
-                        justify_content: JustifyContent::Center,
-                        align_items: AlignItems::Center,
-                        border: UiRect::all(Val::Px(3.0)),
-                        ..default()
-                    },
-                    BackgroundColor(Color::srgb(0.15, 0.15, 0.35)),
-                    PlayButton,
-                ))
-                .with_children(|btn| {
-                    btn.spawn((
-                        Text::new("PLAY"),
-                        TextFont {
-                            font_size: 30.0,
-                            ..default()
-                        },
-                        TextColor(Color::WHITE),
-                    ));
-                });
+            helpers::spawn_button(parent, "PLAY", PlayButton, &fonts);
         });
 }
