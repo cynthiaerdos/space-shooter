@@ -4,7 +4,7 @@ use super::{EnemySpawnTimer, ProjectileCooldown, Enemy};
 use super::helpers::{spawn_enemy};
 use crate::game::projectile;
 use crate::shared::components::DespawnOffscreen;
-use crate::shared::constants::{BOUNDS_X, BOUNDS_Y, ENEMY_MAX_COUNT, ENEMY_SPEED};
+use crate::shared::constants::{BOUNDS_Y, ENEMY_MAX_COUNT, ENEMY_SPEED};
 use crate::shared::resources::{Lives, SpriteAssets};
 
 pub fn spawn_enemies(
