@@ -7,11 +7,12 @@ pub fn spawn_button(parent: &mut bevy::prelude::ChildSpawnerCommands, label: &st
         .spawn((
             Button,
             Node {
-                width: Val::Px(200.0),
-                height: Val::Px(55.0),
+                width: Val::Px(320.0),
+                height: Val::Px(72.0),
                 justify_content: JustifyContent::Center,
                 align_items: AlignItems::Center,
-                border: UiRect::all(Val::Px(2.0)),
+                border: UiRect::all(Val::Px(3.0)),
+                border_radius: BorderRadius::all(Val::Px(16.0)),
                 ..default()
             },
             BackgroundColor(Color::srgb(0.30, 0.30, 0.70)),
@@ -23,7 +24,7 @@ pub fn spawn_button(parent: &mut bevy::prelude::ChildSpawnerCommands, label: &st
                 Text::new(label),
                 TextFont {
                     font: fonts.mono.clone(),
-                    font_size: 26.0,
+                    font_size: 32.0,
                     ..default()
                 },
                 TextColor(Color::WHITE),

@@ -14,7 +14,7 @@ pub fn spawn_main_menu(mut commands: Commands, fonts: Res<FontAssets>) {
                 justify_content: JustifyContent::Center,
                 align_items: AlignItems::Center,
                 flex_direction: FlexDirection::Column,
-                row_gap: Val::Px(30.0),
+                row_gap: Val::Px(24.0),
                 ..default()
             },
             MainMenuRoot,
@@ -28,8 +28,12 @@ pub fn spawn_main_menu(mut commands: Commands, fonts: Res<FontAssets>) {
                     ..default()
                 },
                 TextColor(Color::WHITE),
+                Node {
+                    margin: UiRect::bottom(Val::Px(192.0)),
+                    ..default()
+                },
             ));
 
-            helpers::spawn_button(parent, "PLAY", PlayButton, &fonts);
+            helpers::spawn_button(parent, "Play", PlayButton, &fonts);
         });
 }

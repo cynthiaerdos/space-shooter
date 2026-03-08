@@ -20,24 +20,31 @@ pub fn spawn_death_screen(mut commands: Commands, score: Res<Score>, fonts: Res<
         ))
         .with_children(|parent| {
             parent.spawn((
-                Text::new("GAME OVER"),
+                Text::new("Game Over"),
                 TextFont {
                     font_size: 52.0,
                     ..default()
                 },
                 TextColor(Color::srgb(1.0, 0.2, 0.2)),
+                Node {
+                    margin: UiRect::bottom(Val::Px(32.0)),
+                    ..default()
+                },
             ));
 
             parent.spawn((
                 Text::new(format!("Final Score: {}", score.value)),
                 TextFont {
-                    font_size: 28.0,
+                    font_size: 26.0,
                     ..default()
                 },
                 TextColor(Color::WHITE),
+                Node {
+                    margin: UiRect::bottom(Val::Px(144.0)),
+                    ..default()
+                },
             ));
-
-            helpers::spawn_button(parent, "RESTART", RestartButton, &fonts);
-            helpers::spawn_button(parent, "MENU", MenuButton, &fonts);
+            helpers::spawn_button(parent, "Restart", RestartButton, &fonts);
+            helpers::spawn_button(parent, "Menu", MenuButton, &fonts);
         });
 }
