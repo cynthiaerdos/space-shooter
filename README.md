@@ -18,13 +18,12 @@ Simple space shooter built with [Bevy](https://bevyengine.org/) 0.18 within a fe
 
 ### Assets
 
-- **Space Shooter Starter Pack** by [anim86](https://anim86.itch.io)
-  — [itch.io page](https://anim86.itch.io/space-shoter-starter-pack)
+- **Space Shooter Starter Pack** by [anim86](https://anim86.itch.io) ([itch.io page](https://anim86.itch.io/space-shoter-starter-pack))
 
 ### Engine & Libraries
 
-- [Bevy Engine](https://bevyengine.org/) — MIT / Apache-2.0
-- [rand](https://crates.io/crates/rand) — MIT / Apache-2.0
+- [Bevy Engine](https://bevyengine.org/) (MIT / Apache-2.0)
+- [rand](https://crates.io/crates/rand) (MIT / Apache-2.0)
 
 ## License
 

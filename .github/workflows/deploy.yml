@@ -21,6 +21,16 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
 
+      - name: Cache cargo registry & build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: wasm-${{ hashFiles('Cargo.lock') }}
+          restore-keys: wasm-
+
       - name: Install wasm-bindgen-cli
         run: cargo install wasm-bindgen-cli --force
 
