@@ -2,6 +2,7 @@ pub mod projectile;
 pub mod collision;
 pub mod enemy;
 pub mod player;
+pub mod background;
 
 use bevy::prelude::*;
 
@@ -13,6 +14,7 @@ pub struct GamePlugin;
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
         app.add_plugins((
+            background::BackgroundPlugin,
             player::PlayerPlugin,
             projectile::ProjectilePlugin,
             enemy::EnemyPlugin,
@@ -24,6 +26,7 @@ impl Plugin for GamePlugin {
                 cleanup::<player::Player>,
                 cleanup::<enemy::Enemy>,
                 cleanup::<projectile::Projectile>,
+                cleanup::<background::ScrollingBackground>,
             ),
         );
     }

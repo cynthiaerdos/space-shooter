@@ -27,3 +27,6 @@ pub const SCORE_PER_ENEMY: u32 = 100;
 
 // Collision radius
 pub const PROJECTILE_RADIUS: f32 = 7.0;
+
+// Background
+pub const SMALL_STAR_BACKGROUND_SPEED: f32 = 30.0;

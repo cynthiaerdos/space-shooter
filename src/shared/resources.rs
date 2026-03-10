@@ -8,6 +8,7 @@ pub struct SpriteAssets {
     pub enemy: Handle<Image>,
     pub player_projectile: Handle<Image>,
     pub enemy_projectile: Handle<Image>,
+    pub background_with_small_stars: Handle<Image>,
 }
 
 #[derive(Resource)]

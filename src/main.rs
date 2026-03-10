@@ -39,6 +39,7 @@ fn main() {
         enemy: asset_server.load("sprites/enemy.png"),
         player_projectile: asset_server.load("sprites/player_projectile.png"),
         enemy_projectile: asset_server.load("sprites/enemy_projectile.png"),
+        background_with_small_stars: asset_server.load("sprites/background_with_small_stars.png"),
     });
         
     app.insert_resource(ClearColor(Color::srgb(0.125, 0.125, 0.302)))
