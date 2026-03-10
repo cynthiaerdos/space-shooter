@@ -11,9 +11,6 @@ pub struct HudRoot;
 #[derive(Component)]
 pub struct ScoreText;
 
-#[derive(Component)]
-pub struct LivesText;
-
 pub struct HudPlugin;
 
 impl Plugin for HudPlugin {
@@ -22,7 +19,7 @@ impl Plugin for HudPlugin {
             .add_systems(OnEnter(GameState::Playing), helpers::spawn_hud)
             .add_systems(
                 Update,
-                (systems::update_score, systems::update_lives)
+                (systems::update_score)
                     .run_if(in_state(GameState::Playing)),
             )
             .add_systems(OnExit(GameState::Playing), cleanup::<HudRoot>);

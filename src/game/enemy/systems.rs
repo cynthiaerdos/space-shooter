@@ -5,7 +5,7 @@ use super::helpers::{spawn_enemy};
 use crate::game::projectile;
 use crate::shared::components::DespawnOffscreen;
 use crate::shared::constants::{BOUNDS_Y, ENEMY_MAX_COUNT, ENEMY_SPEED};
-use crate::shared::resources::{Lives, SpriteAssets};
+use crate::shared::resources::{SpriteAssets};
 
 pub fn spawn_enemies(
     commands: Commands,
@@ -57,7 +57,6 @@ pub fn enemy_shooting(
 }
 pub fn despawn_offscreen_enemies(
     mut commands: Commands,
-    mut lives: ResMut<Lives>,
     query: Query<(Entity, &Transform), (With<Enemy>, With<DespawnOffscreen>)>,
 ) {
     for (entity, transform) in &query {
@@ -67,7 +66,6 @@ pub fn despawn_offscreen_enemies(
         
         if out_of_y_bounds {
             commands.entity(entity).despawn();
-            lives.value -= 1;
         }
     }
 }

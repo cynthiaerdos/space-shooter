@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use super::{HudRoot, ScoreText, LivesText};
+use super::{HudRoot, ScoreText};
 
 pub fn spawn_hud(mut commands: Commands) {
     commands
@@ -23,16 +23,6 @@ pub fn spawn_hud(mut commands: Commands) {
                 },
                 TextColor(Color::WHITE),
                 ScoreText,
-            ));
-
-            parent.spawn((
-                Text::new("Lives: 3"),
-                TextFont {
-                    font_size: 26.0,
-                    ..default()
-                },
-                TextColor(Color::srgb(1.0, 0.4, 0.4)),
-                LivesText,
             ));
         });
 }

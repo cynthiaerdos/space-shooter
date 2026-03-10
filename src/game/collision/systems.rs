@@ -1,12 +1,13 @@
 use bevy::prelude::*;
 use bevy::math::bounding::{BoundingCircle, IntersectsVolume};
 
+use crate::game::health::Health;
 use crate::game::projectile::{EnemyProjectile, PlayerProjectile};
 use crate::shared::components::RadiusCollider;
 use crate::game::enemy::Enemy;
 use crate::game::player::Player;
-use crate::shared::constants::SCORE_PER_ENEMY;
-use crate::shared::resources::{Lives, Score};
+use crate::shared::constants::{ENEMY_DAMAGE, SCORE_PER_ENEMY};
+use crate::shared::resources::{Score};
 
 pub fn player_projectile_hits_enemy(
     mut commands: Commands,
@@ -33,10 +34,9 @@ pub fn player_projectile_hits_enemy(
 pub fn enemy_projectile_hits_player(
     mut commands: Commands,
     projectile_query: Query<(Entity, &Transform, &RadiusCollider), With<EnemyProjectile>>,
-    player_query: Query<(&Transform, &RadiusCollider), With<Player>>,
-    mut lives: ResMut<Lives>,
+    mut player_query: Query<(&Transform, &RadiusCollider, &mut Health), With<Player>>,
 ) {
-    let Ok((player_position, player_collider)) = player_query.single() else {
+    let Ok((player_position, player_collider, mut health)) = player_query.single_mut() else {
         return;
     };
 
@@ -48,7 +48,7 @@ pub fn enemy_projectile_hits_player(
             player_collider.radius,
         ) {
             commands.entity(projectile_entity).despawn();
-            lives.value -= 1;
+            health.current -= ENEMY_DAMAGE;
         }
     }
 }

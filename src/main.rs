@@ -5,7 +5,7 @@ mod ui;
 
 use bevy::prelude::*;
 use bevy::window::WindowResolution;
-use shared::resources::{SpriteAssets, Score, Lives};
+use shared::resources::{SpriteAssets, Score};
 use shared::constants::{WINDOW_WIDTH, WINDOW_HEIGHT};
 use states::GameState;
 
@@ -44,7 +44,6 @@ fn main() {
         
     app.insert_resource(ClearColor(Color::srgb(0.125, 0.125, 0.302)))
         .init_resource::<Score>()
-        .init_resource::<Lives>()
         .add_plugins((
             game::GamePlugin,
             ui::UiPlugin,

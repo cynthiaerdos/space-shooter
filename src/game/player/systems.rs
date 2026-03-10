@@ -1,16 +1,21 @@
 use bevy::prelude::*;
 
 use super::{Player, ProjectileCooldown};
+use crate::game::health::Health;
 use crate::game::projectile;
 use crate::shared::constants::*;
-use crate::shared::resources::{Lives, SpriteAssets};
+use crate::shared::resources::{SpriteAssets};
 use crate::states::GameState;
 
-pub fn player_lives(
+pub fn check_player_health(
     mut game_state: ResMut<NextState<GameState>>,
-    lives: Res<Lives>,
+      mut query: Query<&mut Health, With<Player>>,
 ) {
-    if lives.value == 0 {
+    let Ok(health) = query.single_mut() else {
+        return;
+    };
+
+    if health.current < 0.0 {
         game_state.set(GameState::Dead);
     }
 }
